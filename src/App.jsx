@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="container text-center">
-      <div className="card">
+      <div className="card mt-5">
         <div className="card-body">
 
           <div className="row align-items-start">
