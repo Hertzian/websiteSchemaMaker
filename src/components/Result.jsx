@@ -9,15 +9,15 @@ function Result({ result, onCopy }) {
   const [copied, setCopied] = useState('')
   const copyResult = () => {
     onCopy(JSON.stringify(result))
-    setCopied('Schema copied!')
+    setCopied('Copied result!')
     setTimeout(() => setCopied(''), 2000)
   }
 
   return (
     <div className="col">
-      <h2 className="card-title">result</h2>
+      <h2 className="card-title">Result</h2>
       <p className={copied ? 'card-text text-danger' : 'card-text'}>
-        {copied ? 'result copied!' : 'click in the card to get copy your result!'}
+        {copied ? copied : 'Click in the card to copy your schema!'}
       </p>
       <div className="card">
         <div onClick={copyResult} className={copied ? 'card-body bg-light' : 'card-body'} >

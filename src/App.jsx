@@ -3,9 +3,13 @@ import GeneralInput from './components/GeneralInput'
 import Result from './components/Result'
 
 function App() {
-  const [result, setResult] = useState({})
+  const [result, setResult] = useState({
+    ['@context']: 'https://schema.org',
+    ['@type']: 'WebSite',
+  })
 
   const webSite = {
+    ['@id']: '',
     url: '',
     name: '',
     description: '',
@@ -38,8 +42,6 @@ function App() {
               <h2 className="card-title">Website schema</h2>
               <p className="card-text">Write your schema!</p>
 
-              <GeneralInput onChange={onChange} name={'@type'} />
-              <GeneralInput onChange={onChange} name={'@context'} />
               {showInputs}
 
             </div>
