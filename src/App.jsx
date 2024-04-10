@@ -1,21 +1,18 @@
 import { useState } from 'react'
 import GeneralInput from './components/GeneralInput'
 import Result from './components/Result'
-import CopyButton from './components/CopyButton'
 
 function App() {
-  const calix = {
-    context: "",
-    type: "",
-    url: "",
-    potentialAction: {
-      type: "",
-      target: "",
-      query: ""
-    }
-  }
+  const [result, setResult] = useState({})
 
-  const [result, setResult] = useState(calix)
+  const webSite = {
+    url: '',
+    name: '',
+    description: '',
+    alternateName: '',
+    author: '',
+    inLanguage: '',
+  }
 
   const onChange = (e) => setResult({ ...result, [e.target.name]: e.target.value })
   const onCopy = async (text) => {
@@ -24,6 +21,11 @@ function App() {
     } catch (err) {
       console.log('error copying to clipboard: ', err)
     }
+  }
+
+  const showInputs = []
+  for (const [key, value] of Object.entries(webSite)) {
+    showInputs.push(<GeneralInput onChange={onChange} name={key} key={key} />)
   }
 
   return (
@@ -36,17 +38,13 @@ function App() {
               <h2 className="card-title">Website schema</h2>
               <p className="card-text">Write your schema!</p>
 
-              <GeneralInput onChange={onChange} name={'context'} />
-              <GeneralInput onChange={onChange} name={'type'} />
-              <GeneralInput onChange={onChange} name={'url'} />
-              <GeneralInput onChange={onChange} name={'type'} />
-              <GeneralInput onChange={onChange} name={'target'} />
-              <GeneralInput onChange={onChange} name={'query'} />
+              <GeneralInput onChange={onChange} name={'@type'} />
+              <GeneralInput onChange={onChange} name={'@context'} />
+              {showInputs}
 
-              <CopyButton onCopy={onCopy} result={JSON.stringify(result)} />
             </div>
 
-            <Result result={result} />
+            <Result result={result} onCopy={onCopy} />
 
           </div>
 
